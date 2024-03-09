@@ -26,13 +26,13 @@
 }
 .instagram .thumb {
 	width: 25%;
-	height: 0; 
+	height: fit-content;
 	padding-bottom: 25%;
 	position: relative;
 	display: inline-block;
 	text-align: center;
 	background: #ededed;
-	outline: 1px solid #ddd;
+	outline: 0px solid #ddd;
 }
 .instagram .thumb a {
 	position: relative;
@@ -42,6 +42,7 @@
 	font-size: 14px;
 	margin-left: 10px;
 }
+
 .instagram .album ul{
 	display: flex;
 	flex-wrap: wrap;

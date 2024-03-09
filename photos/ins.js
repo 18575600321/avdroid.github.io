@@ -107,28 +107,22 @@
       }
     };
     var render = function render(res) {
-      //https://raw.githubusercontent.com/quanluo/Blog-Picture/master/min_photos/2020-05-20_1.png
-      //https://gitee.com/quanluo/blog-picture/raw/master/min_photos/2020-05-20_1.png
       var ulTmpl = "";
       for (var j = 0, len2 = res.list.length; j < len2; j++) {
         var data = res.list[j].arr;
         var liTmpl = "";
         for (var i = 0, len = data.link.length; i < len; i++) {
-          //var minSrc = 'https://gitee.com/quanluo/blog-picture/raw/master/min_photos/' + data.link[i];
-          //var src = 'https://gitee.com/quanluo/blog-picture/raw/master/photos/' + data.link[i];
-          // var minSrc = 'https://raw.githubusercontent.com/quanluo/Blog-Picture/master/min_photos/' + data.link[i];
-          // var src = 'https://raw.githubusercontent.com/quanluo/Blog-Picture/master/photos/' + data.link[i];
-          var minSrc = '/photos/thumbnail/' + data.link[i];
-          var src = '/photos/original/' + data.link[i];
+          //var thumbnailFilename = 'http://android.ticp.io:18088/photos/thumbnail/' + data.link[i];
+          //var originalFilename = 'http://android.ticp.io:18088/photos/original/' + data.link[i];
+          var originalFilename = 'http://android.ticp.io:18088/movie/3.mp4';
+          var thumbnailFilename = '/photos/thumbnail/' + data.link[i];
+          //var originalFilename = '/photos/original/' + data.link[i];
           var type = data.type[i];
-          var target = src + (type === 'video' ? '.mp4' : '.jpg');
-          src += '';
-
           liTmpl += '<figure class="thumb" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">\
-                <a href="' + src + '" itemprop="contentUrl" data-size="1080x1080" data-type="' + type + '" data-target="' + src + '">\
-                  <img class="reward-img" data-type="' + type + '" data-src="' + minSrc + '" src="/img/empty.png" itemprop="thumbnail" onload="lzld(this)">\
+                <a href="http://android.ticp.io:18088/movie/3.mp4" target="_blank">\
+                  <img class="reward-img" data-type="' + type + '" data-src="' + thumbnailFilename + '" src="/img/empty.png" itemprop="thumbnail" onload="lzld(this)">\
                 </a>\
-                <figcaption style="display:none" itemprop="caption description">' + data.text[i] + '</figcaption>\
+                <figcaption style="display:on" itemprop="caption description">' + data.text[i] + '</figcaption>\
             </figure>';
         }
         ulTmpl = ulTmpl + '<section class="archives album"><h1 class="year">' + data.year + '年<em>' + data.month + '月<em>' + data.day + '日</em></h1>\
@@ -140,33 +134,6 @@
       _view2.default.init();
     };
 
-    var replacer = function replacer(str) {
-      var arr = str.split("/");
-      return "/assets/ins/" + arr[arr.length - 1];
-    };
-
-    var ctrler = function ctrler(data) {
-      var imgObj = {};
-      for (var i = 0, len = data.length; i < len; i++) {
-        var y = data[i].y;
-        var m = data[i].m;
-        var src = replacer(data[i].src);
-        var text = data[i].text;
-        var key = y + "" + ((m + "").length == 1 ? "0" + m : m);
-        if (imgObj[key]) {
-          imgObj[key].srclist.push(src);
-          imgObj[key].text.push(text);
-        } else {
-          imgObj[key] = {
-            year: y,
-            month: m,
-            srclist: [src],
-            text: [text]
-          };
-        }
-      }
-      render(imgObj);
-    };
 
     function loadData(success) {
       if (!searchData) {
