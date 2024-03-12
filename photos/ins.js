@@ -118,14 +118,23 @@
           var thumbnailFilename = '/photos/thumbnail/' + data.name[i];
           var originalFilename = '/photos/original/' + data.link[i];
           var type = data.type[i];
-          if(type === 'video')
+          if(type === 'video') {
           	originalFilename = data.link[i];
-          liTmpl += '<figure class="thumb" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">\
+          	liTmpl += '<figure class="thumb" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">\
+                <a href="' + originalFilename + '" itemprop="contentUrl" data-type="' + type + '" data-target="' + originalFilename + '">\
+                  <img class="reward-img" data-type="' + type + '" data-src="' + thumbnailFilename + '" src="/img/empty.png" itemprop="thumbnail" onload="lzld(this)">\
+                </a>\
+                <div onclick="window.open(\'' + originalFilename + '\',\'_self\')" class="ico_play" ></div>\
+                <figcaption style="display:on" itemprop="caption description">' + data.text[i] + '</figcaption>\
+            	</figure>';
+          } else {
+          	liTmpl += '<figure class="thumb" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">\
                 <a href="' + originalFilename + '" itemprop="contentUrl" data-type="' + type + '" data-target="' + originalFilename + '">\
                   <img class="reward-img" data-type="' + type + '" data-src="' + thumbnailFilename + '" src="/img/empty.png" itemprop="thumbnail" onload="lzld(this)">\
                 </a>\
                 <figcaption style="display:on" itemprop="caption description">' + data.text[i] + '</figcaption>\
-            </figure>';
+            	</figure>';
+          }
         }
         ulTmpl = ulTmpl + '<section class="archives album"><h1 class="year">' + data.year + '年<em>' + data.month + '月<em>' + data.day + '日</em></h1>\
         <ul class="img-box-ul">' + liTmpl + '</ul>\
