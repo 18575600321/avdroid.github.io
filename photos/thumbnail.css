@@ -31,7 +31,7 @@
 	position: relative;
 	display: inline-block;
 	text-align: center;
-	background: #ededed;
+/*	background: #ededed; modified by hyb 去掉图片周围灰色框*/
 	outline: 0px solid #ddd;
 }
 .instagram .thumb a {
@@ -40,16 +40,17 @@
 .instagram .album h1 em{
 	font-style: normal;
 	font-size: 14px;
-	margin-left: 10px;
+	margin-left: 0px;
 }
 
 .instagram .album ul{
 	display: flex;
 	flex-wrap: wrap;
 	clear: both;
-	width: 100%;
 	text-align: left;
+/*	width: 100%; modified by hyb 最右图片偏小问题 */
 }
+
 .instagram .album li{
 	list-style: none;
 	display: inline-block;

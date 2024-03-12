@@ -114,12 +114,14 @@
         for (var i = 0, len = data.link.length; i < len; i++) {
           //var thumbnailFilename = 'http://android.ticp.io:18088/photos/thumbnail/' + data.link[i];
           //var originalFilename = 'http://android.ticp.io:18088/photos/original/' + data.link[i];
-          var originalFilename = 'http://android.ticp.io:18088/movie/3.mp4';
-          var thumbnailFilename = '/photos/thumbnail/' + data.link[i];
-          //var originalFilename = '/photos/original/' + data.link[i];
+          //var originalFilename = 'http://android.ticp.io:18088/movie/3.mp4';
+          var thumbnailFilename = '/photos/thumbnail/' + data.name[i];
+          var originalFilename = '/photos/original/' + data.link[i];
           var type = data.type[i];
+          if(type === 'video')
+          	originalFilename = data.link[i];
           liTmpl += '<figure class="thumb" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">\
-                <a href="http://android.ticp.io:18088/movie/3.mp4" target="_blank">\
+                <a href="' + originalFilename + '" itemprop="contentUrl" data-type="' + type + '" data-target="' + originalFilename + '">\
                   <img class="reward-img" data-type="' + type + '" data-src="' + thumbnailFilename + '" src="/img/empty.png" itemprop="thumbnail" onload="lzld(this)">\
                 </a>\
                 <figcaption style="display:on" itemprop="caption description">' + data.text[i] + '</figcaption>\
@@ -129,7 +131,8 @@
         <ul class="img-box-ul">' + liTmpl + '</ul>\
         </section>';
       }
-      document.querySelector('.instagram').innerHTML = '<div class="photos" itemscope="" itemtype="http://schema.org/ImageGallery">' + ulTmpl + '</div>';
+//    document.querySelector('.instagram').innerHTML = '<div class="photos" itemscope="" itemtype="http://schema.org/ImageGallery">' + ulTmpl + '</div>'; //modified by hyb 在 img 标签显示小手,点击在新标签页打开图片,修改此处
+      document.querySelector('.instagram').innerHTML = '<div style="cursor: pointer" itemscope="" itemtype="http://schema.org/ImageGallery">' + ulTmpl + '</div>';
       createVideoIncon();
       _view2.default.init();
     };
